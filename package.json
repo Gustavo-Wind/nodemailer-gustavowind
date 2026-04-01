@@ -1,0 +1,42 @@
+{
+  "name": "nodemailer-gustavowind",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engine": {
+    "node": "18"
+  },
+  "scripts": {
+    "dev": "tsx src/server.ts",
+    "build": "tsup src",
+    "start": "node dist/server.js"
+  },
+  "type": "module",
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gustavo-Wind/nodemailer-gustavowind.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  
+  "bugs": {
+    "url": "https://github.com/Gustavo-Wind/nodemailer-gustavowind/issues"
+  },
+  "homepage": "https://github.com/Gustavo-Wind/nodemailer-gustavowind#readme",
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "@types/node": "^25.5.0",
+    "dotenv": "^17.3.1",
+    "fastify": "^5.8.4",
+    "nodemailer": "^8.0.4",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^7.0.11"
+  }
+  
+}
