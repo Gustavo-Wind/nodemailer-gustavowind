@@ -23,13 +23,16 @@ app.register(cors, {
 });
 
 let transport = nodemailer.createTransport({
-    host: "smtp.office3.com",
+    host: "smtp.office365.com",
     port: 587,
     secure: false,
     auth: {
         user: process.env.EMAIL_SENDER,
         pass: process.env.PASS_SENDER
-    }
+    },
+        tls: {
+        ciphers: "SSLv3"
+    },
 });
 
 app.post("/send-email", async(request, reponse) => {

@@ -11,6 +11,8 @@
     "moduleResolution": "Node",
     "target": "es2020",
     "types": [],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
