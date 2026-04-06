@@ -24,7 +24,8 @@
   },
   "homepage": "https://github.com/Gustavo-Wind/nodemailer-gustavowind#readme",
   "dependencies": {
-    "@fastify/cors": "^11.2.0"
+    "@fastify/cors": "^11.2.0",
+    "resend": "^6.10.0"
   },
   "devDependencies": {
     "@types/node": "^25.5.0",

@@ -1,62 +1,45 @@
 import fastify from 'fastify';
 import cors from '@fastify/cors';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import dotenv from 'dotenv';
-import { hostname } from 'node:os';
 
 dotenv.config();
 
 const app = fastify();
-
-type NodeMail = {
-    from: string,
-    to: string,
-    subject: string,
-    text: string,
-    html: string
-};
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.register(cors, {
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"]
+  origin: "*"
 });
 
-let transport = nodemailer.createTransport({
-    host: "smtp.office365.com",
-    port: 587,
-    secure: false,
-    auth: {
-        user: process.env.EMAIL_SENDER,
-        pass: process.env.PASS_SENDER
-    },
-        tls: {
-        ciphers: "SSLv3"
-    },
+app.post("/send-email", async (request, response) => {
+  const { to, subject, text, html } = request.body as any;
+
+  try {
+    const data = await resend.emails.send({
+      from: 'gustavowinddeveloper@gmail.com',
+      to,
+      subject,
+      html: html || `<p>${text}</p>`
+    });
+
+    console.log(data);
+
+    return response.status(200).send({
+      success: true,
+      data
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    return response.status(500).send({
+      success: false,
+      error
+    });
+  }
 });
 
-app.post("/send-email", async(request, reponse) => {
-    const {from, to, subject, text, html} = request.body as NodeMail;
-    const mailOptions = {
-        from,
-        to,
-        subject,
-        html,
-        text
-    }
-    try{
-        await transport.sendMail(mailOptions);
-        console.log('E-mail enviado.');
-        reponse.status(200);
-    } catch(error){
-        console.log(error);
-        reponse.status(500);
-    }
-})
-
-app.listen({
-    host: "0.0.0.0",
-    port: process.env.PORT ? Number(process.env.PORT) : 5000
-}).then(() => {
-    console.log('Servidor Funcionando')
+app.listen({ port: 5000 }, () => {
+  console.log("Servidor rodando 🚀");
 });
