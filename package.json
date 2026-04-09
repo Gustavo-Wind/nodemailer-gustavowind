@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engine": {
-    "node": "18"
+  "engines": {
+    "node": ">=20"
   },
   "scripts": {
-    "dev": "tsx src/server.ts",
-    "build": "tsup src/server.ts --out-dir dist",
-    "start": "node dist/server.js"
-  },
+  "dev": "tsx watch src/server.ts",
+  "build": "tsup src/server.ts --format esm --dts --clean --out-dir dist",
+  "start": "node dist/server.js"
+},
   "type": "module",
   "repository": {
     "type": "git",
@@ -23,16 +23,15 @@
     "url": "https://github.com/Gustavo-Wind/nodemailer-gustavowind/issues"
   },
   "homepage": "https://github.com/Gustavo-Wind/nodemailer-gustavowind#readme",
+
   "dependencies": {
     "@fastify/cors": "^11.2.0",
+    "dotenv": "^17.4.0",
+    "fastify": "^5.8.4",
     "resend": "^6.10.0"
   },
   "devDependencies": {
-    "@types/node": "^25.5.0",
-    "@types/nodemailer": "^7.0.11",
-    "dotenv": "^17.4.0",
-    "fastify": "^5.8.4",
-    "nodemailer": "^8.0.4",
+    "@types/node": "^22.0.0",
     "tsup": "^8.5.1",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2"
