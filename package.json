@@ -34,7 +34,7 @@
   },
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsup src/server.ts --format cjs --clean --out-dir dist",
+    "build": "tsup src/server.ts --format cjs --target node22 --clean --out-dir dist",
     "start": "node dist/server.js"
   }
 }
